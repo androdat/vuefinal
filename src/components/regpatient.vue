@@ -1,3 +1,4 @@
+ 
 <template>
    <div>
           <div class="regpatient" style="height: 680px;">
@@ -39,11 +40,12 @@
             <vue-instant-loading-spinner ref="Spinner"></vue-instant-loading-spinner>
    </div>
 </template>
-
+ 
 <script>
-import PostsService from "@/services/apiService";
+//import PostsService from "@/services/apiService";
 import VueInstantLoadingSpinner from "vue-instant-loading-spinner/src/components/VueInstantLoadingSpinner.vue";
-
+import axios from "axios";
+ 
 export default {
     name: "regpatient",
     data (){
@@ -74,26 +76,24 @@ export default {
             console.log(newTodo)
             //construct object and emmit to parent
             // this.$emit('add-todo', newTodo);
+            axios.post(`http://localhost:8081/registerPatient`, {
+                     name: this.patientname,
+                age : this.age ,
+                adharNo : this.patientadno ,
+                phNo : this.phno ,
+    })
+    //.then(response => {})
+    .catch(e => {
+      this.errors.push(e)
+    })
         },
-         async registerPatient() {
-
-      await this.runSpinner();
-      const apiResponse = await PostsService.registerPatient(
-        this.patientname,
-        this.age ,
-        this.patientadno ,
-         this.phno 
-      );
-
-      console.log(apiResponse);
-      this.registerReponse = apiResponse;
-      await this.hideSpinner();
-    },
-
+     
     }
 }
 </script>
-
+ 
 <style scoped>
-
 </style>
+ 
+ 
+ 
