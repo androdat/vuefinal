@@ -6,7 +6,7 @@
           <img src="./assets/logo.png" alt />
         </div>
         <div>
-          <h1>EHR</h1>
+          <h1 id="hero">EHR</h1>
         </div>
         <div>
           <router-link to="/">Home</router-link>|
@@ -19,6 +19,17 @@
              <router-link to="/RegisterDoctor">Register Doctor</router-link>|
             </div>
           </div>
+
+             <div class="dropdown">
+            <button class="dropbtn">Login</button>
+            <div class="dropdown-content">
+            <router-link to="/LoginPatient">Login Patient</router-link>|
+             <router-link to="/LoginDoctor">Login Doctor</router-link>|
+             <router-link to="/LoginHospitalAdmin">Login Hospital Admin</router-link>|
+            </div>
+          </div>
+
+
           <router-link to="/about">About</router-link>
         </div>
       </div>
@@ -33,8 +44,8 @@ body {
   font-family: "Roboto", sans-serif;
 
   letter-spacing: 0.1em;
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
 }
 .flex {
   /* margin-left: 50em; */
@@ -100,5 +111,8 @@ img {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: #676867;
+}
+#hero{
+  margin-right: 25em;
 }
 </style>

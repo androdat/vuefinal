@@ -1,6 +1,9 @@
  
 <template>
    <div>
+       <h1>hello</h1>
+       <h1>{{objj}}</h1>
+            <h1>hello</h1>
           <div class="regpatient" style="height: 680px;">
                 <h1 >REGISTER NEW PATIENT</h1>
                 <form @submit="fs" enctype=multipart/form-data>
@@ -37,6 +40,9 @@
                 </form>
         
             </div>
+
+            <h1>{{objj}}</h1>
+            <h1>hello</h1>
             <vue-instant-loading-spinner ref="Spinner"></vue-instant-loading-spinner>
    </div>
 </template>
@@ -50,10 +56,17 @@ export default {
     name: "regpatient",
     data (){
         return{
+            objj: {
+                x:1
+               
+
+            },
+            
             patientname: '',
             age: '',
             patientadno: '',
             phno: '',
+            
         
     
         }
@@ -64,6 +77,7 @@ export default {
     methods: {
         fs(e)
         { 
+             this.objj.y= this.age
             e.preventDefault();
             console.log("submit pressed")
             const newTodo = {
@@ -71,23 +85,33 @@ export default {
                 age : this.age ,
                 adharNo : this.patientadno ,
                 phNo : this.phno ,
+               
             
             }
             console.log(newTodo)
             //construct object and emmit to parent
             // this.$emit('add-todo', newTodo);
-            axios.post(`http://localhost:8081/registerPatient`, {
+            axios.post('https://jsonplaceholder.typicode.com/todos', {
                      name: this.patientname,
                 age : this.age ,
                 adharNo : this.patientadno ,
                 phNo : this.phno ,
-    })
-    //.then(response => {})
-    .catch(e => {
-      this.errors.push(e)
-    })
+                 })
+            .then(res => this.objj = res.data)
+            //this.objj = res.data
+            .catch(e => {
+            this.errors.push(e)
+            })
         },
      
+
+    //  created(){
+
+    //      axios.get('https://jsonplaceholder.typicode.com/todos')
+    //      .then(res => console.log(res))
+    //      .catch(err => console.log(err))
+
+    //  }
     }
 }
 </script>

@@ -3,7 +3,12 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import RegisterPatient from '../views/RegisterPatient.vue'
 import RegisterDoctor from '../views/RegisterDoctor.vue'
-
+import LoginPatient from '../views/LoginPatient.vue'
+import LoginDoctor from '../views/LoginDoctor.vue'
+import LoginHospitalAdmin from '../views/LoginHospitalAdmin.vue'
+import PatientDashboard from '../views/PatientDashboard.vue'
+import DoctorDashboard from '../views/DoctorDashboard.vue'
+import HospitalAdminDashboard from '../views/HospitalAdminDashboard'
 Vue.use(VueRouter)
 
   const routes = [
@@ -11,6 +16,36 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/HospitalAdminDashboard',
+    name: 'HospitalAdminDashboard',
+    component: HospitalAdminDashboard
+  },
+  {
+    path: '/DoctorDashboard',
+    name: 'DoctorDashboard',
+    component: DoctorDashboard
+  },
+  {
+    path: '/PatientDashboard',
+    name: 'PatientDashboard',
+    component: PatientDashboard
+  },
+  {
+    path: '/LoginHospitalAdmin',
+    name: 'LoginHospitalAdmin',
+    component: LoginHospitalAdmin
+  },
+  {
+    path: '/LoginDoctor',
+    name: 'LoginDoctor',
+    component: LoginDoctor
+  },
+  {
+    path: '/LoginPatient',
+    name: 'LoginPatient',
+    component: LoginPatient
   },
   {
     path: '/RegisterPatient',
