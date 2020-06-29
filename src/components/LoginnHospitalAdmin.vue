@@ -1,10 +1,10 @@
 <template>
      <div>
        
-       <h1>{{objj}}</h1>
+       
             
-          <div class="regpatient" style="height: 680px;">
-                <h1 >HOSPITAL ADMIN LOGIN</h1>
+          <div class="regpatient" >
+                <h1 id="pl">HOSPITAL ADMIN LOGIN</h1>
                 <form @submit="fs" enctype=multipart/form-data>
                     <ul>
                         <li>
@@ -13,21 +13,21 @@
                         </li>
                         <li>
                             <label for="fname" class="label">Password:</label>
-                            <input type="text"    v-model="password"   id="fname" name="password" class="inputfield"><br><br>
+                            <input type="password"    v-model="password"   id="fname" name="password" class="inputfield"><br><br>
                         </li>
                       
                       
                        
                         <li>
-                            <input type="submit" value="Submit" name="patient" class="signup">
+                            <!-- <input type="submit" value="Submit" name="patient" class="signup"> -->
                         </li>
                     </ul>
+                    <input type="submit" value="Submit" name="patient" class="signup">
                 </form>
         
             </div>
 
-            <h1>{{objj}}</h1>
-            <h1>hello</h1>
+           
             <vue-instant-loading-spinner ref="Spinner"></vue-instant-loading-spinner>
    </div>
     
@@ -54,7 +54,7 @@ export default {
             username: '',
             password: '',
           
-        
+           x:"admin"
     
         }
     },
@@ -64,7 +64,7 @@ export default {
   },
 
     methods:{
-         fs(e)
+         async fs(e)
         { 
              
             e.preventDefault();
@@ -81,6 +81,15 @@ export default {
             }
             console.log(newTodo)
 
+        //      let params = {
+        //         patientId:this.x,
+        //          pswd : this.x 
+        //   }
+
+        //   let res = await axios.post('http://localhost:8080/validatePatient',params);
+        //   this.objj=res.data;
+        //   let x = this.objj.Success;
+
         //   axios.post('https://jsonplaceholder.typicode.com/todos', {
         //         username: this.username,
         //         password : this.password ,
@@ -90,9 +99,9 @@ export default {
         //     .catch(e => {
         //     this.errors.push(e)
         //     })
-           if (newTodo.username=='1')
+           if (newTodo.username=='admin' && newTodo.password=='admin')
         {
-            this.$router.push('Home') 
+            this.$router.push('HospitalAdminDashboard') 
         }
        
         }
@@ -103,5 +112,49 @@ export default {
 
 <style  scoped>
 
+.regpatient
+{
+    background-color: white;
+    height: 320px;
+    width: 300px;
+    border-radius: 25px;
+    padding: 2em;
+    margin: 5em auto;
+  
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+.signup{
+    background-color: #126597; /* Green */
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  /* margin: 4px 2px; */
+  margin-left: 6em;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 100px;
+  font-weight: bold;
+  
+}
+#pl{
+    text-align: center;
+}
+.inputfield {
+       width: 15em;
+    padding: 0.8em;
+    /* border-radius: 0.5em; */
+    border: none;
+    border-bottom: 1px solid black;
+}
+ul{
+    list-style-type: none;
+}
 
 </style>

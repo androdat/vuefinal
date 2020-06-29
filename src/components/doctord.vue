@@ -3,23 +3,22 @@
         <!-- <h1>inside doctor d</h1> -->
            <div class="gridcontainer">
             <div class="griditem  griditem1" style="overflow-x:auto;" >griditem1
-                <table style="width:100%">
-                    <tr>
-                        <th >Patient ID</th>
-                        <th >Patient name</th>
-                        <!-- <th >Patient phno</th>
-                        <th >Patient Email</th>
-                        <th >Patient address</th>
-                        <th >Patient Adhar No</th>
-                        <th >Patient City</th>
-                        <th >report</th> -->
+            <table style="width:100%">
+          <tr>
+            <th>Patient Name</th>
+            <th>Patient Id</th>
+            <!-- <th>Patient Phno</th>
+            <th>Patient Age</th> -->
+          </tr>
+          <tr  v-for = "patientdata in patientdatas" :key="patientdata.Key">
+            <td>{{patientdata.Record.name}}</td>
+            <td>{{patientdata.Record.patientId}}</td>
+            <!-- <td>{{patientdata.Record.phNo}}</td>
+            <td>{{patientdata.Record.age}}</td> -->
+          </tr>
+          
+        </table>
 
-
-                    </tr>
-                    
-                   
-                      
-                  </table>
             </div>
 
 
@@ -84,12 +83,57 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-    name:"doctord"
+    name:"doctord",
+async mounted() {
+    // console.log("created");
+    // this.x = 99;
+
+    let res = await axios.get('http://localhost:8080/getPatients');
+
+    let data = res.data;
+    this.patientdatas = data;
+    console.log("this is patient data")
+   console.log(data)
+ 
+
+    
+    let res1 = await axios.get('http://localhost:8080/getDoctors');
+
+    let data1 = res1.data;
+    this.doctordatas = data1;
+    console.log("this is doctor data")
+   console.log(data1)
+ 
+  },
+
+  data () {
+    return{
+       patientdatas : [],
+       doctordatas : [],
+    }
+  }
 }
 </script>
 
 <style scoped>
+
+table,
+th,
+td {
+    /* border: 1px solid black;  */
+     border-bottom: 1px solid rgb(8, 2, 2)34, 17, 17); 
+  border-collapse: collapse;
+}
+
+th{
+  text-align: center;
+}
+th, td {
+  padding: 15px;
+}
+tr:hover {background-color: #f5f5f5;}
 .hero {
   text-align: center;
 }
@@ -103,14 +147,14 @@ export default {
       grid-template-rows: 500px 300px 500px;
 }
 
-.griditem1 table, .griditem1 td, .griditem1 th {
+/* .griditem1 table, .griditem1 td, .griditem1 th {
   border: 1px solid black;
   width: 300px;
 }
 
 .griditem1 td {
   text-align: center;
-}
+} */
 
 .container {
   height: 250px;

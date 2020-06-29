@@ -1,10 +1,10 @@
 <template>
      <div>
        
-       <h1>{{objj}}</h1>
+      
             
-          <div class="regpatient" style="height: 680px;">
-                <h1 >DOCTOR LOGIN</h1>
+          <div class="regpatient" >
+                <h1 id="pl">DOCTOR LOGIN</h1>
                 <form @submit="fs" enctype=multipart/form-data>
                     <ul>
                         <li>
@@ -19,15 +19,17 @@
                       
                        
                         <li>
-                            <input type="submit" value="Submit" name="patient" class="signup">
+                            
                         </li>
                     </ul>
+                    
+                     <input type="submit" value="Submit" name="patient" class="signup">
                 </form>
         
             </div>
 
-            <h1>{{objj}}</h1>
-            <h1>hello</h1>
+            <!-- <h1>{{objj}}</h1>
+            <h1>hello</h1> -->
             <vue-instant-loading-spinner ref="Spinner"></vue-instant-loading-spinner>
    </div>
     
@@ -38,14 +40,13 @@
 
 // import uuid from 'uuid';
 import VueInstantLoadingSpinner from "vue-instant-loading-spinner/src/components/VueInstantLoadingSpinner.vue";
-// import axios from "axios";
+ import axios from "axios";
 export default {
     name: "LoginnDoctor",
         data (){
         return{
             objj: {
-                username:"",
-                password:""
+               
                
                
 
@@ -64,7 +65,7 @@ export default {
   },
 
     methods:{
-         fs(e)
+         async fs(e)
         { 
              
             e.preventDefault();
@@ -90,9 +91,20 @@ export default {
         //     .catch(e => {
         //     this.errors.push(e)
         //     })
-           if (newTodo.username=='1')
+
+        
+          let params = {
+                doctorId: this.username,
+                 pswd : this.password 
+          }
+
+          let res = await axios.post('http://localhost:8080/validateDoctor',params);
+          this.objj=res.data;
+          let x = this.objj.Success;
+          console.log()
+           if (x)
         {
-            this.$router.push('Home') 
+            this.$router.push('DoctorDashboard') 
         }
        
         }
@@ -103,5 +115,49 @@ export default {
 
 <style  scoped>
 
+.regpatient
+{
+    background-color: white;
+    height: 280px;
+    width: 300px;
+    border-radius: 25px;
+    padding: 2em;
+    margin: 5em auto;
+  
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+.signup{
+    background-color: #126597; /* Green */
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  /* margin: 4px 2px; */
+  margin-left: 6em;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 100px;
+  font-weight: bold;
+  
+}
+#pl{
+    text-align: center;
+}
+.inputfield {
+       width: 15em;
+    padding: 0.8em;
+    /* border-radius: 0.5em; */
+    border: none;
+    border-bottom: 1px solid black;
+}
+ul{
+    list-style-type: none;
+}
 
 </style>
