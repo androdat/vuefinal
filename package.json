@@ -11,7 +11,7 @@
     "axios": "^0.19.2",
     "blob": "^0.1.0",
     "core-js": "^3.6.5",
-    "docxtemplater": "^3.17.9",
+    "docxtemplater": "^3.31.5",
     "pizzip": "^3.0.6",
     "vue": "^2.6.11",
     "vue-instant-loading-spinner": "^1.0.0",
